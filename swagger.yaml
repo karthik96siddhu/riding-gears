@@ -1,0 +1,108 @@
+openapi: "3.0.0"
+info:
+  title: Riding gears API 
+  description: LCO - A course to create API for ecomm store
+  version: 1.1.0
+  contact:
+    email: karthik96siddhu@gmail.com
+    url: "https://lco.dev"
+
+# servers:
+#   - url: "http://localhost:3000/api/v1"
+#     description: for local host - regular
+#   - url: "https://localhost:3000/api/v1"
+#     description: for local host - secured
+
+servers:
+  - url: "{protocol}://localhost:3000/api/{version}"
+    description: for local host
+    variables:
+      version:
+        enum:
+          - v1
+          - v2
+        default: v1
+      protocol:
+        enum:
+          - http
+          - https
+        default: http
+
+components:
+  securitySchemes:
+
+    cookieAuth:
+      type: apiKey
+      in: cookie
+      name: token
+      
+    
+    BearerAuth:
+      type: http
+      scheme: bearer
+
+paths:
+  /dummy:
+    get:
+      tags:
+        - String
+      summary: returns greet message from LCO
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: string
+                example: "myString"
+        '400':
+          description: Bad request
+        '500':
+          description: internal server error
+
+
+  /signup:
+    post:
+      tags:
+        - String
+      summary: add new course to courses
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                email:
+                  type: string
+                password:
+                  type: string
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                photo:
+                  type: string
+                  format: binary
+      responses:
+        '200':
+          description: All good success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  name:
+                    type: string
+                  email:
+                    type: string
+        '400':
+          description: Bad request
+        '500':
+          description: internal server error
