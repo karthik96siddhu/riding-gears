@@ -1,0 +1,17 @@
+const express = require('express')
+const { createOrder, getSingleOrder, getLoggedInOrders, adminGetAllOrders, adminUpdateSingleOrder, adminDeleteSingleOrder } = require('../controllers/orderController')
+const { isLoggedIn, customRole } = require('../middlewares/user')
+const router = express.Router()
+
+router.route('/order/create').post(isLoggedIn, createOrder)
+router.route('/order/:id').get(isLoggedIn, getSingleOrder)
+router.route('/myorder').get(isLoggedIn, getLoggedInOrders)
+
+// admin routes
+router.route('/admin/orders').get(isLoggedIn, customRole('admin', adminGetAllOrders))
+router.route('/admin/order/:id')
+            .put(isLoggedIn, customRole('admin'), adminUpdateSingleOrder)
+            .delete(isLoggedIn, customRole('admin'), adminDeleteSingleOrder)
+
+
+module.exports = router
