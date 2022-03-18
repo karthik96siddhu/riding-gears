@@ -4,6 +4,8 @@ const fs = require('fs')
 const path = require('path')
 const home = require('./routes/home')
 const user = require('./routes/user')
+const product = require('./routes/product')
+const payment = require('./routes/payment')
 const cookieParser = require('cookie-parser')
 const fileUpload = require('express-fileupload')
 const app = express()
@@ -37,12 +39,11 @@ app.use(morgan('common', {
     stream: fs.createWriteStream(path.join(__dirname, 'access.log'), { flags: 'a' })
   }))
 
-
-
-
 // route middlware
 app.use('c',home)
 app.use('/api/v1', user)
+app.use('/api/v1', product)
+app.use('/api/v1', payment)
 
 app.get('/signuptest', (req, res) => {
   res.render('signup')
