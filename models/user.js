@@ -63,7 +63,7 @@ userSchema.methods.isValidatedPassword = async function(givenPassword) {
 
 // create and return JWT
 userSchema.methods.createJWT = function() {
-    const token = jwt.sign({id: this._id, email: this.email}, process.env.JWT_SECRET, {expiresIn: process.env.JWT_EXPIRY})
+    const token = jwt.sign({id: this._id, name: this.name, email: this.email}, process.env.JWT_SECRET, {expiresIn: process.env.JWT_EXPIRY})
     return token
 }
 
