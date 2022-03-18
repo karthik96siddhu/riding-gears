@@ -41,7 +41,7 @@ app.use(morgan('common', {
   }))
 
 // route middlware
-app.use('c',home)
+app.use('',home)
 app.use('/api/v1', user)
 app.use('/api/v1', product)
 app.use('/api/v1', payment)
