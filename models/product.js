@@ -35,6 +35,10 @@ const productSchema = new mongoose.Schema({
             message: "please select category from gloves, jacket, pant, luggage, helmet"
         }
     },
+    stock: {
+        type: Number,
+        required: [true, 'please add a number in stock']
+    },
     brand: {
         type: String,
         required: [true, 'please add a brand for gears']
