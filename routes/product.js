@@ -16,7 +16,7 @@ router.route('/products').get(getProducts)
 router.route('/product/:id').get(getSingleProduct)
 
 // reviews routes
-router.route('/product/addreview').put(isLoggedIn, addReview)
+router.route('/product').put(isLoggedIn, addReview)
 router.route('/product').delete(isLoggedIn, deleteReview)
 router.route('/product').get(getOnlyReviewsForSingleProduct)
 
