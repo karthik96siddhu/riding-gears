@@ -2,10 +2,9 @@
 
 ## Description
 
-### A E-commerce web app built for customers to buy riding gears online with payment gateway feature. Application includes roles based acess like customer, manager and admin.
+### A E-commerce web app API's built for customers to buy riding gears online with payment gateway feature. Application includes roles based acess like customer, manager and admin.
 
 ## Technologies used
-
 ### Node js, Express and MongoDB
 
 ## How to run application
