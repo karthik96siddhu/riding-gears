@@ -1,4 +1,4 @@
-# Motocycle-riding gears
+# Motorcycle-riding gears
 
 ## Description
 
