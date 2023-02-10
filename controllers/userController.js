@@ -10,6 +10,7 @@ const crypto = require('crypto')
 exports.signup = BigPromise(async (req, res, next) => {
 
     let result;
+    let profile_photo = {};
     if (req.files) {
         let file = req.files.photo
         result = await cloudinary.uploader.upload(file.tempFilePath, {
@@ -17,6 +18,10 @@ exports.signup = BigPromise(async (req, res, next) => {
             width: 150,
             crop: 'scale'
         })
+        profile_photo = {
+            id: result.public_id,
+            secured_url: result.secure_url
+        }
     }
 
     const { name, email, password } = req.body
@@ -27,10 +32,7 @@ exports.signup = BigPromise(async (req, res, next) => {
         name,
         email,
         password,
-        photo: {
-            id: result.public_id,
-            secured_url: result.secure_url
-        }
+        photo: {...profile_photo}
     })
     cookieToken(user, res);
 })
